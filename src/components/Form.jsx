@@ -24,6 +24,7 @@ class Form extends Component {
   };
 
   render() {
+    const isImage = this.state.img_src;
     console.log(this.state.img_src);
 
     return (
@@ -43,6 +44,7 @@ class Form extends Component {
             accept="image/*"
             onChange={this.handleChangeFile}
           />
+          {isImage && <img src={this.state.img_src} className="picture" />}
           <br />
           <input className="tweet_button" type="submit" value="tweet" />
         </form>
