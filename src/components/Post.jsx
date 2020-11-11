@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faRetweet } from "@fortawesome/free-solid-svg-icons";
+import { View, Text } from "react-native";
 import { plusLike, plusRetweet, openCommentBox, addComment } from "../actions";
 
 class Post extends Component {
@@ -17,7 +18,8 @@ class Post extends Component {
   onCommentSubmit = (e) => {
     e.preventDefault();
     const { post, onSubmit } = this.props;
-    onSubmit(post.id, post.isComment, this.state.commentText);
+    const commentedAt = new Date().toLocaleString();
+    onSubmit(post.id, post.isComment, this.state.commentText, commentedAt);
     this.setState({ commentText: "" });
   };
 
@@ -28,7 +30,11 @@ class Post extends Component {
 
     return (
       <div className="tweet">
-        {post.text} <br />
+        {post.text}
+        <div>
+          <img src={post.img_src} />
+        </div>
+        <br />
         <FontAwesomeIcon
           style={iconStyle}
           icon={faComments}
@@ -48,6 +54,9 @@ class Post extends Component {
           onClick={() => onClickRetweet(post.id, post.retweet)}
         />
         {post.retweet}
+        <View>
+          <Text style={{ textAlign: "right" }}>{post.createdAt}</Text>
+        </View>
         {isComment && (
           <form onSubmit={(e) => this.onCommentSubmit(e)}>
             <input
@@ -75,8 +84,8 @@ const mapDispatchToProps = (dispatch) => {
     onClickLike: (id, like) => dispatch(plusLike(id, like)),
     onClickRetweet: (id, retweet) => dispatch(plusRetweet(id, retweet)),
     onClickComment: (id, isComment) => dispatch(openCommentBox(id, isComment)),
-    onSubmit: (id, isComment, commentText) =>
-      dispatch(addComment(id, isComment, commentText))
+    onSubmit: (id, isComment, commentText, commentedAt) =>
+      dispatch(addComment(id, isComment, commentText, commentedAt))
   };
 };
 

@@ -20,7 +20,9 @@ const posts = (state = initialState, action) => {
           isComment: false,
           like: 0,
           retweet: 0,
-          comments: {}
+          comments: {},
+          createdAt: action.createdAt,
+          img_src: action.img_src
         }
       };
     case PLUS_LIKE:
@@ -65,7 +67,8 @@ const posts = (state = initialState, action) => {
               commentId: action.commentId,
               commentText: action.commentText,
               commentLike: 0,
-              commentRetweet: 0
+              commentRetweet: 0,
+              commentedAt: action.commentedAt
             }
           }
         }

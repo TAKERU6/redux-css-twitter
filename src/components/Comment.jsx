@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faRetweet } from "@fortawesome/free-solid-svg-icons";
+import { View, Text } from "react-native";
 import { plusCommentLike, plusCommentRetweet } from "../actions";
 
 class Comment extends Component {
@@ -30,6 +31,9 @@ class Comment extends Component {
           }
         />
         {comment.commentRetweet}
+        <View>
+          <Text style={{ textAlign: "right" }}>{comment.commentedAt}</Text>
+        </View>
       </div>
     );
   }

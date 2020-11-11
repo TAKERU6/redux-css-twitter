@@ -8,11 +8,13 @@ export const PLUS_COMMENT_RETWEET = "PLUS_COMMENT_RETWEET";
 
 let id = 1;
 let commentId = 1;
-export const addPosts = (text) => {
+export const addPosts = (text, createdAt, img_src) => {
   return {
     type: ADD_POSTS,
     id: id++,
-    text
+    text,
+    createdAt,
+    img_src
   };
 };
 
@@ -40,13 +42,14 @@ export const openCommentBox = (id, isComment) => {
   };
 };
 
-export const addComment = (id, isComment, commentText) => {
+export const addComment = (id, isComment, commentText, commentedAt) => {
   return {
     type: ADD_COMMENT,
     id,
     isComment,
     commentId: commentId++,
-    commentText
+    commentText,
+    commentedAt
   };
 };
 
