@@ -10,7 +10,7 @@ class Form extends Component {
   handleChangeFile = (event) => {
     const files = event.target.files;
     const image_url = window.URL.createObjectURL(files[0]);
-    URL.revokeObjectURL(image_url);
+    URL.revokeObjectURL(image_url.blob);
     this.setState({ img_src: image_url });
   };
 
