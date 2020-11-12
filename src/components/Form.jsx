@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addPosts } from "../actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImages } from "@fortawesome/free-regular-svg-icons";
 
 class Form extends Component {
   state = { text: "", img_src: "" };
@@ -20,11 +22,12 @@ class Form extends Component {
     const { text, img_src } = this.state;
     const createdAt = new Date().toLocaleString();
     onSubmit(text, createdAt, img_src);
-    this.setState({ text: "" });
+    this.setState({ text: "", img_src: "" });
   };
 
   render() {
     const isImage = this.state.img_src;
+    const iconStyle = { padding: 0, fontSize: 25 };
     console.log(this.state.img_src);
 
     return (
@@ -38,9 +41,13 @@ class Form extends Component {
             onChange={this.handleChangeText}
           />
           <br />
+          <label htmlFor="file">
+            <FontAwesomeIcon style={iconStyle} icon={faImages} />
+          </label>
           <input
+            style={{ display: "none" }}
             type="file"
-            ref="file"
+            id="file"
             accept="image/*"
             onChange={this.handleChangeFile}
           />
