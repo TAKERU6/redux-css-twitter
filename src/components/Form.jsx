@@ -28,7 +28,6 @@ class Form extends Component {
   render() {
     const isImage = this.state.img_src;
     const iconStyle = { padding: 0, fontSize: 25 };
-    console.log(this.state.img_src);
 
     return (
       <div>

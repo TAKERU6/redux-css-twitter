@@ -27,7 +27,6 @@ class Post extends Component {
     const { post, onClickLike, onClickRetweet, onClickComment } = this.props;
     const iconStyle = { padding: 0, fontSize: 15 };
     const isComment = !!post.isComment;
-    console.log(this.props.post);
     return (
       <div className="tweet">
         {post.text}
